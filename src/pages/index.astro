@@ -1,26 +1,849 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/sections/Hero.astro';
-import Trust from '../components/sections/Trust.astro';
-import Features from '../components/sections/Features.astro';
-import FaqAutomation from '../components/sections/FaqAutomation.astro';
-import LeadGeneration from '../components/sections/LeadGeneration.astro';
-import AutomationCapabilitiesGrid from '../components/sections/AutomationCapabilitiesGrid.astro';
-import Demo from '../components/sections/Demo.astro';
-import CallToAction from '../components/sections/CallToAction.astro';
-import Footer from '../components/sections/Footer.astro';
 ---
 
-<Layout title="Wayon Automation | Instagram & WhatsApp Automation">
-	<main>
-		<Hero />
-		<Trust />
-		<Features id="features" />
-		<FaqAutomation />
-		<LeadGeneration />
-		<AutomationCapabilitiesGrid />
-		<Demo />
-		<CallToAction />
-	</main>
-	<Footer />
+<Layout title="Interakt - WhatsApp Business for Travel & Tourism">
+  <Fragment slot="head">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style is:global>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font-family: 'Inter', sans-serif; font-size: 14px; color: #1a1a1a; background: #fff; overflow-x: hidden; }
+
+      /* TOP ANNOUNCEMENT BAR */
+      .topbar { background: #0a4f3f; color: #fff; text-align: center; padding: 9px 20px; font-size: 12.5px; font-weight: 400; }
+      .topbar a { color: #4dd9a0; text-decoration: underline; margin-left: 4px; }
+
+      /* NAV */
+      nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 40px; background: #fff; border-bottom: 1px solid #e8e8e8; position: sticky; top: 0; z-index: 100; }
+      .nav-logo { font-size: 22px; font-weight: 800; color: #0a4f3f; display: flex; align-items: center; gap: 6px; }
+      .nav-logo svg { width: 28px; height: 28px; }
+      .nav-links { display: flex; align-items: center; gap: 28px; }
+      .nav-links a { color: #444; font-size: 13px; text-decoration: none; font-weight: 500; }
+      .nav-links a:hover { color: #0a4f3f; }
+      .nav-links span { color: #999; font-size: 11px; }
+      .nav-right { display: flex; align-items: center; gap: 14px; }
+      .btn-demo { border: 1.5px solid #25d366; color: #0a4f3f; padding: 7px 18px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; background: transparent; }
+      .btn-login { color: #444; font-size: 13px; font-weight: 500; }
+      .lang { background: #f0f0f0; border-radius: 4px; padding: 5px 10px; font-size: 12px; color: #555; }
+
+      /* HERO */
+      .hero { background: linear-gradient(135deg, #f0faf5 0%, #e6f7ef 40%, #f5f5f0 100%); padding: 60px 40px 40px; display: flex; align-items: center; gap: 20px; min-height: 420px; max-width: 100%; overflow: hidden; }
+      .hero-left { flex: 1; min-width: 220px; }
+      .hero-left h1 { font-size: 34px; font-weight: 800; color: #0a4f3f; line-height: 1.15; margin-bottom: 22px; }
+      .hero-left h1 span { color: #0a4f3f; }
+      .hero-bullets { list-style: none; margin-bottom: 28px; }
+      .hero-bullets li { font-size: 13px; color: #333; padding: 6px 0 6px 24px; position: relative; }
+      .hero-bullets li::before { content: '✓'; position: absolute; left: 0; color: #25d366; font-weight: 700; font-size: 14px; }
+      .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+      .btn-green { background: #25d366; color: #fff; padding: 12px 28px; border-radius: 8px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; text-decoration: none; display: inline-block; }
+      .btn-outline { background: #fff; color: #0a4f3f; padding: 11px 26px; border-radius: 8px; font-size: 14px; font-weight: 600; border: 1.5px solid #0a4f3f; cursor: pointer; text-decoration: none; display: inline-block; }
+      .hero-center { flex: 2; display: flex; justify-content: center; align-items: center; }
+      .hero-right { flex: 0 0 360px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 16px; position: relative; }
+      .dashboard-img { width: 100%; max-width: 360px; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); animation: dashFloat 4s ease-in-out infinite; }
+      @keyframes dashFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+      /* LEAD MANAGEMENT UI */
+      .lms-ui { width: 100%; max-width: 300px; animation: lmsFloat 4s ease-in-out infinite; }
+      @keyframes lmsFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+      .lms-window { background: #1e1e2e; border-radius: 14px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3); border: 1px solid #2a2a3e; }
+      .lms-titlebar { background: #16162a; padding: 8px 12px; display: flex; align-items: center; gap: 6px; }
+      .lms-dot { width: 8px; height: 8px; border-radius: 50%; }
+      .lms-dot.r { background: #ff5f57; }
+      .lms-dot.y { background: #febc2e; }
+      .lms-dot.g { background: #28c840; }
+      .lms-titlebar-text { font-size: 10px; color: #666; margin-left: 8px; font-weight: 500; }
+
+      .lms-header { padding: 12px 14px 8px; display: flex; align-items: center; justify-content: space-between; }
+      .lms-header-title { font-size: 12px; font-weight: 700; color: #fff; }
+      .lms-header-badge { background: #25d366; color: #fff; font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 10px; }
+
+      /* Stats row */
+      .lms-stats { display: flex; gap: 6px; padding: 0 14px 10px; }
+      .lms-stat-card { flex: 1; background: #252540; border-radius: 8px; padding: 8px 6px; text-align: center; }
+      .lms-stat-val { font-size: 16px; font-weight: 800; color: #25d366; }
+      .lms-stat-label { font-size: 8px; color: #888; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+      /* Pipeline columns */
+      .lms-pipeline { display: flex; gap: 6px; padding: 0 14px 10px; }
+      .lms-col { flex: 1; background: #252540; border-radius: 8px; padding: 6px; }
+      .lms-col-head { font-size: 8px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #333; display: flex; align-items: center; justify-content: space-between; }
+      .lms-col-count { background: #333; color: #aaa; font-size: 8px; padding: 1px 5px; border-radius: 8px; }
+
+      /* Lead mini-cards */
+      .lms-lead { background: #1e1e2e; border-radius: 6px; padding: 6px 7px; margin-bottom: 4px; border-left: 2px solid #25d366; }
+      .lms-lead:last-child { margin-bottom: 0; }
+      .lms-lead.hot { border-left-color: #ff6b6b; }
+      .lms-lead.warm { border-left-color: #f5a623; }
+      .lms-lead-name { font-size: 9px; font-weight: 700; color: #e0e0e0; display: flex; align-items: center; gap: 4px; }
+      .lms-lead-avatar { width: 14px; height: 14px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; font-weight: 700; flex-shrink: 0; }
+      .lms-lead-meta { font-size: 7.5px; color: #666; margin-top: 2px; }
+      .lms-lead-tag { display: inline-block; font-size: 7px; padding: 1px 5px; border-radius: 6px; margin-top: 3px; font-weight: 600; }
+      .lms-lead-tag.domestic { background: rgba(37,211,102,0.15); color: #25d366; }
+      .lms-lead-tag.intl { background: rgba(99,102,241,0.15); color: #818cf8; }
+      .lms-lead-tag.honeymoon { background: rgba(245,166,35,0.15); color: #f5a623; }
+
+      /* Notification toast */
+      .lms-toast { margin: 0 14px 10px; background: linear-gradient(135deg, rgba(37,211,102,0.15), rgba(37,211,102,0.05)); border: 1px solid rgba(37,211,102,0.3); border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; gap: 8px; }
+      .lms-toast-icon { width: 24px; height: 24px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11px; flex-shrink: 0; animation: toastPing 2s ease-in-out infinite; }
+      @keyframes toastPing { 0%, 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.4); } 50% { box-shadow: 0 0 0 6px rgba(37,211,102,0); } }
+      .lms-toast-text { font-size: 9px; color: #ccc; line-height: 1.4; }
+      .lms-toast-text b { color: #25d366; font-weight: 700; }
+
+      /* PHONE MOCKUP */
+      .phone-wrap { position: relative; width: 200px; }
+      .phone { background: #fff; border-radius: 24px; box-shadow: 0 12px 40px rgba(0,0,0,0.15); overflow: hidden; border: 2px solid #e0e0e0; }
+      .phone-status { background: #075e54; padding: 10px 14px; display: flex; align-items: center; gap: 8px; }
+      .phone-avatar { width: 32px; height: 32px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; font-weight: 700; }
+      .phone-name { color: #fff; font-size: 12px; font-weight: 600; }
+      .phone-sub { color: rgba(255,255,255,0.7); font-size: 10px; }
+      .phone-body { padding: 12px; background: #e5ddd5; min-height: 200px; }
+      .msg { margin-bottom: 8px; max-width: 85%; }
+      .msg-in { background: #fff; border-radius: 0 10px 10px 10px; padding: 8px 10px; font-size: 10.5px; line-height: 1.4; color: #1a1a1a; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+      .msg-out { background: #dcf8c6; border-radius: 10px 0 10px 10px; padding: 8px 10px; font-size: 10.5px; line-height: 1.4; color: #1a1a1a; margin-left: auto; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+      .msg b { font-weight: 600; }
+      .qr-btns { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 5px; }
+      .qr-btn { border: 1px solid #25d366; color: #25d366; border-radius: 14px; padding: 3px 9px; font-size: 9.5px; background: #fff; cursor: pointer; }
+
+      /* FLOATING CARD */
+      .float-card { position: absolute; background: #fff; border-radius: 12px; box-shadow: 0 6px 24px rgba(0,0,0,0.12); padding: 12px 14px; font-size: 11px; }
+      .float-card-tl { top: -20px; right: -30px; min-width: 140px; }
+      .float-card .dest { color: #0a4f3f; font-weight: 700; font-size: 12px; margin-bottom: 4px; }
+      .float-card .off { background: #25d366; color: #fff; border-radius: 4px; padding: 2px 7px; font-size: 10px; font-weight: 600; display: inline-block; margin-top: 3px; }
+      .float-card-br { bottom: -20px; left: -50px; min-width: 150px; }
+      .star { color: #f5a623; font-size: 11px; }
+
+      /* MAC WINDOW MOCKUP */
+      .mac-window { background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.12), 0 10px 30px rgba(37,211,102,0.1); border: 1px solid rgba(0,0,0,0.08); width: 100%; max-width: 800px; animation: floatImg 6s ease-in-out infinite; transform-origin: center; transition: transform 0.3s ease; }
+      .mac-window:hover { transform: translateY(-4px) scale(1.02); animation-play-state: paused; box-shadow: 0 40px 90px rgba(0,0,0,0.15), 0 15px 40px rgba(37,211,102,0.15); }
+      .mac-header { background: #f8f9fa; padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #eef0f2; }
+      .mac-dot { width: 10px; height: 10px; border-radius: 50%; }
+      .mac-dot.r { background: #ff5f56; border: 1px solid #e0443e; }
+      .mac-dot.y { background: #ffbd2e; border: 1px solid #dea123; }
+      .mac-dot.g { background: #27c93f; border: 1px solid #1aab29; }
+      @keyframes floatImg { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+
+      /* TRUST BAR */
+      .trust { background: #faf7f2; border-top: 1px solid #ede8e0; border-bottom: 1px solid #ede8e0; padding: 20px 60px; text-align: center; }
+      .trust p { font-size: 13px; color: #777; margin-bottom: 14px; }
+      .trust-logos { display: flex; align-items: center; justify-content: center; gap: 36px; flex-wrap: wrap; }
+      .trust-logos span { font-size: 15px; font-weight: 700; color: #555; letter-spacing: 0.3px; }
+
+      /* SECTION: CREATE DELIGHTFUL */
+      .delightful { background: #fff; padding: 52px 80px; }
+      .section-h { text-align: center; font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 36px; }
+      .steps { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0; position: relative; }
+      .steps::before { content: ''; position: absolute; top: 28px; left: 80px; right: 80px; height: 2px; background: #e0e0e0; z-index: 0; }
+      .step { text-align: center; padding: 0 16px; position: relative; z-index: 1; }
+      .step-circle { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-size: 20px; font-weight: 700; background: #25d366; color: #fff; }
+      .step.c2 .step-circle { background: #0a4f3f; }
+      .step.c3 .step-circle { background: #f5a623; color: #fff; }
+      .step.c4 .step-circle { background: #6c63ff; color: #fff; }
+      .step h3 { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+      .step p { font-size: 12.5px; color: #666; line-height: 1.6; }
+
+      /* USE CASES HEADER */
+      .use-cases-header { background: linear-gradient(135deg, #e8f5ee 0%, #f0faf5 100%); padding: 40px 80px; text-align: center; }
+      .use-cases-header h2 { font-size: 26px; font-weight: 800; color: #1a1a1a; margin-bottom: 8px; }
+      .use-cases-header p { font-size: 13.5px; color: #666; }
+
+      /* FEATURE ROWS */
+      .feature { padding: 52px 80px; display: flex; align-items: center; gap: 60px; }
+      .feature.alt { background: #f8fdf9; flex-direction: row-reverse; }
+      .feature-text { flex: 1; }
+      .feature-text h2 { font-size: 24px; font-weight: 800; color: #1a1a1a; line-height: 1.3; margin-bottom: 20px; }
+      .feature-text ul { list-style: none; }
+      .feature-text ul li { padding: 8px 0 8px 26px; position: relative; font-size: 13.5px; color: #444; border-bottom: 1px solid #f0f0f0; line-height: 1.5; }
+      .feature-text ul li:last-child { border-bottom: none; }
+      .feature-text ul li::before { content: ''; position: absolute; left: 0; top: 14px; width: 16px; height: 16px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+      .feature-text ul li::after { content: '✓'; position: absolute; left: 3px; top: 12px; color: #fff; font-size: 9px; font-weight: 700; }
+      .feature-img { flex: 0 0 auto; display: flex; justify-content: center; align-items: center; position: relative; width: 100%; }
+      .btn-try { display: inline-block; margin-top: 20px; background: #25d366; color: #fff; padding: 11px 26px; border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none; }
+
+      /* Feature section as vertical stack for phone flow */
+      .feature.flow-section { flex-direction: column; align-items: flex-start; gap: 30px; }
+      .feature.flow-section .feature-text { max-width: 100%; }
+      .feature.flow-section .feature-img { flex: none; }
+
+      /* 3-PHONE FLOW - HORIZONTAL */
+      .phone-flow { display: flex; align-items: center; justify-content: center; gap: 24px; padding: 20px 0; }
+      .phone-flow .phone-device { width: 280px; flex-shrink: 0; }
+      .phone-flow .phone-device-body { padding: 14px; border-radius: 44px; }
+      .phone-flow .phone-device-screen { border-radius: 32px; }
+      .phone-flow .whatsapp-mockup-img { height: 500px; }
+      .phone-flow .phone-speaker { display: none; }
+      .flow-arrow { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+      .flow-arrow-line { width: 40px; height: 2px; background: linear-gradient(90deg, #25d366, #0a4f3f); position: relative; }
+      .flow-arrow-line::after { content: '▶'; position: absolute; right: -10px; top: -8px; color: #25d366; font-size: 12px; }
+      .flow-arrow-label { font-size: 10px; color: #25d366; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; background: #e8f5ee; padding: 3px 10px; border-radius: 10px; }
+
+      /* CHAT MOCKUP STYLED */
+      .chat-mock { background: #fff; border-radius: 20px; box-shadow: 0 10px 36px rgba(0,0,0,0.12); overflow: hidden; width: 260px; border: 1.5px solid #e8e8e8; }
+      .chat-head { background: #075e54; padding: 12px 14px; display: flex; align-items: center; gap: 10px; }
+      .chat-av { width: 36px; height: 36px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+      .chat-info .name { color: #fff; font-size: 12.5px; font-weight: 600; }
+      .chat-info .status { color: rgba(255,255,255,0.7); font-size: 10.5px; }
+      .chat-body { padding: 14px; background: #e5ddd5; min-height: 220px; }
+      .cm { margin-bottom: 9px; }
+      .cm-in { background: #fff; border-radius: 0 10px 10px 10px; padding: 9px 11px; font-size: 11px; line-height: 1.5; color: #1a1a1a; max-width: 88%; box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+      .cm-out { background: #dcf8c6; border-radius: 10px 0 10px 10px; padding: 9px 11px; font-size: 11px; line-height: 1.5; color: #1a1a1a; max-width: 88%; margin-left: auto; box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+      .cm-in b, .cm-out b { font-weight: 600; }
+      .cm-time { font-size: 9px; color: #999; text-align: right; margin-top: 2px; }
+      .chat-qbtns { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 4px; }
+      .chat-qbtn { border: 1px solid #25d366; color: #25d366; border-radius: 14px; padding: 4px 11px; font-size: 10px; background: #fff; cursor: pointer; font-weight: 500; }
+      .chat-action-bar { background: #f0f0f0; padding: 8px 12px; display: flex; align-items: center; gap: 8px; }
+      .chat-input { flex: 1; background: #fff; border-radius: 20px; padding: 6px 12px; font-size: 11px; color: #999; border: none; }
+      .chat-send { background: #25d366; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; }
+
+      /* DOC MOCKUP */
+      .doc-mock { background: #fff; border-radius: 16px; box-shadow: 0 10px 36px rgba(0,0,0,0.12); overflow: hidden; width: 260px; border: 1.5px solid #e8e8e8; }
+      .doc-head { background: #075e54; padding: 12px 14px; display: flex; align-items: center; gap: 10px; }
+      .doc-body { padding: 14px; background: #e5ddd5; }
+      .doc-item { background: #fff; border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; font-size: 11px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+      .doc-icon { width: 32px; height: 32px; background: #f44336; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+      .doc-icon.blue { background: #2196f3; }
+      .doc-name { font-weight: 600; color: #1a1a1a; font-size: 11px; }
+      .doc-size { color: #999; font-size: 9.5px; }
+      .doc-check { margin-left: auto; color: #25d366; font-size: 14px; }
+
+      /* WHY SECTION */
+      .why { background: #f8fdf9; padding: 52px 80px; display: flex; gap: 60px; align-items: flex-start; }
+      .why-left { flex: 1; }
+      .why-left h2 { font-size: 26px; font-weight: 800; color: #1a1a1a; margin-bottom: 14px; }
+      .why-left > p { font-size: 13.5px; color: #555; line-height: 1.7; margin-bottom: 20px; }
+      .why-list { list-style: none; }
+      .why-list li { padding: 10px 0 10px 28px; position: relative; font-size: 13.5px; color: #333; border-bottom: 1px solid #e8e8e8; font-weight: 500; }
+      .why-list li:last-child { border-bottom: none; }
+      .why-list li::before { content: '✓'; position: absolute; left: 0; color: #25d366; font-weight: 700; font-size: 15px; }
+      .why-right { flex: 0 0 320px; }
+      .testimonial { background: #fff; border-radius: 16px; box-shadow: 0 6px 24px rgba(0,0,0,0.08); padding: 24px; border-left: 4px solid #25d366; margin-bottom: 20px; }
+      .testimonial p { font-size: 13.5px; color: #444; line-height: 1.7; font-style: italic; margin-bottom: 12px; }
+      .testimonial .author { font-size: 12.5px; font-weight: 700; color: #0a4f3f; }
+
+      /* STATS BAR */
+      .stats { background: #2d6a4f; padding: 36px 80px; display: flex; justify-content: space-around; align-items: center; }
+      .stat { text-align: center; }
+      .stat .num { font-size: 42px; font-weight: 800; color: #fff; line-height: 1; }
+      .stat .lbl { font-size: 12.5px; color: rgba(255,255,255,0.8); margin-top: 6px; line-height: 1.5; max-width: 120px; }
+      .stat-div { width: 1px; height: 60px; background: rgba(255,255,255,0.25); }
+
+      /* INTEGRATIONS */
+      .integrations { padding: 40px 80px; text-align: center; background: #fff; }
+      .integrations h3 { font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 20px; }
+      .int-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+      .int-chip { background: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 8px; padding: 8px 18px; font-size: 12.5px; font-weight: 600; color: #333; }
+
+      /* CTA BOTTOM */
+      .cta-bottom { background: linear-gradient(135deg, #e8f5ee 0%, #f5fbf7 100%); padding: 52px 80px; display: flex; align-items: center; gap: 60px; }
+      .cta-left { flex: 1; }
+      .cta-left h2 { font-size: 26px; font-weight: 800; color: #1a1a1a; line-height: 1.3; margin-bottom: 12px; }
+      .cta-left p { font-size: 13.5px; color: #555; margin-bottom: 20px; }
+      .cta-left small { font-size: 12px; color: #888; display: block; margin-top: 8px; }
+      .cta-features { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+      .cta-feat { font-size: 12px; color: #0a4f3f; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+      .cta-feat::before { content: '●'; color: #25d366; font-size: 8px; }
+      .cta-right { flex: 0 0 280px; display: flex; flex-direction: column; gap: 12px; }
+      .cta-card { background: #fff; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); padding: 14px 18px; display: flex; align-items: center; gap: 12px; }
+      .cta-card-icon { font-size: 22px; }
+      .cta-card-text { font-size: 12.5px; font-weight: 600; color: #333; }
+
+      /* GET STARTED */
+      .get-started { background: #0a4f3f; padding: 44px 80px; text-align: center; color: #fff; }
+      .get-started h2 { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
+      .get-started p { font-size: 13.5px; color: rgba(255,255,255,0.8); margin-bottom: 6px; }
+      .get-started-tags { display: flex; justify-content: center; gap: 28px; margin: 20px 0 28px; flex-wrap: wrap; }
+      .gs-tag { font-size: 13px; color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 6px; }
+      .gs-tag::before { content: '●'; color: #25d366; font-size: 10px; }
+      .btn-white { background: #fff; color: #0a4f3f; padding: 13px 34px; border-radius: 8px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; display: inline-block; text-decoration: none; }
+
+      /* FOOTER */
+      footer { background: #fff; border-top: 1px solid #e8e8e8; padding: 44px 80px 24px; }
+      .footer-grid { display: grid; grid-template-columns: 200px 1fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+      .footer-logo { font-size: 22px; font-weight: 800; color: #0a4f3f; margin-bottom: 12px; }
+      .footer-logo span { color: #25d366; }
+      .footer-desc { font-size: 12.5px; color: #666; line-height: 1.6; margin-bottom: 14px; }
+      .footer-social { display: flex; gap: 10px; }
+      .social-icon { width: 30px; height: 30px; background: #f0f0f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+      .footer-col h4 { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; }
+      .footer-col a { display: block; font-size: 12.5px; color: #666; text-decoration: none; margin-bottom: 8px; }
+      .footer-col a:hover { color: #0a4f3f; }
+      .footer-bottom { border-top: 1px solid #e8e8e8; padding-top: 18px; display: flex; justify-content: space-between; align-items: center; }
+      .footer-bottom p { font-size: 12px; color: #999; }
+      .footer-regions { font-size: 12px; color: #999; }
+
+      /* WHATSAPP MOCKUP IMAGE - PREMIUM PHONE FRAME */
+      .phone-device {
+        position: relative;
+        width: 280px;
+        margin: 0 auto;
+        filter: drop-shadow(0 30px 60px rgba(0,0,0,0.25)) drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+      }
+      .phone-device-body {
+        position: relative;
+        background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 50%, #111 100%);
+        border-radius: 44px;
+        padding: 14px;
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+      /* Side buttons */
+      .phone-device-body::before {
+        content: '';
+        position: absolute;
+        left: -3px;
+        top: 100px;
+        width: 3px;
+        height: 30px;
+        background: linear-gradient(180deg, #333, #222, #333);
+        border-radius: 2px 0 0 2px;
+        box-shadow: 0 38px 0 0 #2a2a2a, 0 60px 0 0 #2a2a2a;
+      }
+      .phone-device-body::after {
+        content: '';
+        position: absolute;
+        right: -3px;
+        top: 130px;
+        width: 3px;
+        height: 50px;
+        background: linear-gradient(180deg, #333, #222, #333);
+        border-radius: 0 2px 2px 0;
+      }
+      /* Inner screen bezel */
+      .phone-device-screen {
+        position: relative;
+        border-radius: 32px;
+        overflow: hidden;
+        background: #000;
+      }
+      /* Dynamic Island - removed to avoid covering WhatsApp header */
+      /* Subtle glass reflection */
+      .phone-device-reflection {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 32px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 40%, transparent 60%, rgba(255,255,255,0.02) 100%);
+        pointer-events: none;
+        z-index: 5;
+      }
+      .whatsapp-mockup-img { 
+        width: 100%; 
+        height: 500px; 
+        object-fit: cover;
+        object-position: top;
+        display: block;
+      }
+      /* Speaker grill */
+      .phone-speaker {
+        position: absolute;
+        top: 4px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 4px;
+        background: #222;
+        border-radius: 4px;
+        z-index: 2;
+      }
+
+      /* RESPONSIVE STYLES */
+      @media (max-width: 992px) {
+        nav { padding: 14px 20px; }
+        .nav-links { display: none; } /* Hide complex links on mobile */
+        
+        .hero, .feature, .feature.alt, .why, .cta-bottom {
+          flex-direction: column;
+          padding: 40px 20px;
+          gap: 40px;
+          text-align: center;
+        }
+        
+        .hero-left, .hero-center, .hero-right, .why-left, .why-right, .cta-left, .cta-right {
+          flex: none;
+          width: 100%;
+        }
+        
+        .hero-bullets li { text-align: left; }
+        .hero-btns { justify-content: center; }
+        
+        /* Overlapping Mac Windows reset */
+        .feature-img .mac-window { 
+          margin-top: 0 !important; 
+          align-self: center !important; 
+          width: 100% !important;
+        }
+        .feature-img[style*="flex-direction: column"] { gap: 20px !important; }
+        
+        /* Layout resets */
+        .steps { grid-template-columns: 1fr; gap: 40px; }
+        .steps::before { display: none; }
+        
+        .stats { flex-direction: column; gap: 30px; padding: 40px 20px; }
+        .stat-div { width: 80px; height: 1px; }
+        
+        .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+        .footer-social { justify-content: center; }
+        
+        .use-cases-header, .delightful, .get-started { padding: 40px 20px; }
+        
+        /* Horizontal phone flow to vertical */
+        .phone-flow { flex-direction: column; gap: 30px; }
+        .flow-arrow { transform: rotate(90deg); margin: 10px 0; }
+      }
+
+      @media (max-width: 600px) {
+        .hero h1 { font-size: 28px; }
+        .stat .num { font-size: 36px; }
+        .feature-text h2, .why-left h2, .cta-left h2, .get-started h2 { font-size: 22px; }
+      }
+    </style>
+  </Fragment>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    Never miss a call with MyCallGenie: India's #1 AI Call Receptionist — <a href="#">Learn More</a>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="#25d366"/><path d="M7 20l1.5-5.5A7 7 0 1 1 14 21a7 7 0 0 1-3.5-.94L7 20z" fill="#fff"/></svg>
+      interakt
+    </div>
+    <div class="nav-links">
+      <a href="#">Products ▾</a>
+      <a href="#">Solutions ▾</a>
+      <a href="#">Integrations</a>
+      <a href="#">Pricing</a>
+      <a href="#">Partnerships</a>
+      <a href="#">Resources ▾</a>
+    </div>
+    <div class="nav-right">
+      <span class="btn-demo">Demo</span>
+      <span class="btn-login">Login</span>
+      <span class="lang">🌐 EN ▾</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <h1>Generate more leads for<br>your travel agency on<br>WhatsApp</h1>
+      <ul class="hero-bullets">
+        <li>Enable 24/7 customer support and agent availability</li>
+        <li>Automate FAQs around travel and tourism queries</li>
+        <li>Share relevant documents, PDFs, property brochures on WhatsApp</li>
+      </ul>
+      <div class="hero-btns">
+        <a href="#" class="btn-green">Try Interakt for Free</a>
+        <a href="#" class="btn-outline">Get a Live Demo</a>
+      </div>
+    </div>
+    <div class="hero-center">
+      <div class="phone-device">
+        <div class="phone-device-body">
+          <div class="phone-speaker"></div>
+          <div class="phone-device-screen">
+            <img src="/WhatsApp Image 1.jpeg" alt="WhatsApp Conversation" class="whatsapp-mockup-img" />
+            <div class="phone-device-reflection"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="/crm-dashboard.png" alt="Lead Management Dashboard" class="dashboard-img" />
+    </div>
+  </section>
+
+
+
+
+
+
+  <!-- FEATURE 1: LEAD GEN -->
+  <section class="feature" style="justify-content: center; padding: 40px 40px;">
+    <div class="feature-img" style="width: 100%;">
+      <div class="phone-flow">
+
+        <!-- Phone 2 -->
+        <div class="phone-device">
+          <div class="phone-device-body">
+            <div class="phone-speaker"></div>
+            <div class="phone-device-screen">
+              <img src="/whatsapp2.jpeg" alt="WhatsApp Step 2" class="whatsapp-mockup-img" />
+              <div class="phone-device-reflection"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Arrow 2 -->
+        <div class="flow-arrow">
+          <div class="flow-arrow-line"></div>
+          <div class="flow-arrow-label">Lead Created</div>
+        </div>
+        <!-- Phone 3 -->
+        <div class="phone-device">
+          <div class="phone-device-body">
+            <div class="phone-speaker"></div>
+            <div class="phone-device-screen">
+              <img src="/whatsappp3.jpeg" alt="WhatsApp Step 3" class="whatsapp-mockup-img" />
+              <div class="phone-device-reflection"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Arrow 3 -->
+        <div class="flow-arrow">
+          <div class="flow-arrow-line"></div>
+          <div class="flow-arrow-label">Booking</div>
+        </div>
+        <!-- Phone 4 -->
+        <div class="phone-device">
+          <div class="phone-device-body">
+            <div class="phone-speaker"></div>
+            <div class="phone-device-screen">
+              <img src="/whatsapp4.jpeg" alt="WhatsApp Step 4" class="whatsapp-mockup-img" />
+              <div class="phone-device-reflection"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Arrow 4 -->
+        <div class="flow-arrow">
+          <div class="flow-arrow-line"></div>
+          <div class="flow-arrow-label">Confirmation</div>
+        </div>
+        <!-- Phone 5 -->
+        <div class="phone-device">
+          <div class="phone-device-body">
+            <div class="phone-speaker"></div>
+            <div class="phone-device-screen">
+              <img src="/whatsapp5.jpeg" alt="WhatsApp Step 5" class="whatsapp-mockup-img" />
+              <div class="phone-device-reflection"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 2: QUALIFY LEADS -->
+  <section class="feature alt">
+    <div class="feature-text">
+      <h2>Qualify leads on WhatsApp for timely follow-ups based on their travel requirements</h2>
+      <ul>
+        <li>Use WhatsApp chatbots to request more information like budget, destination, number of travelers and more</li>
+        <li>Integrate with CRM to store customer data and assign the right travel agents</li>
+        <li>Send WhatsApp broadcasts to promote new packages and deals based on query</li>
+        <li>Automate FAQs to answer travel queries</li>
+      </ul>
+      <a href="#" class="btn-try">Try for Free</a>
+    </div>
+    <div class="feature-img" style="flex: 1.5;">
+      <div class="mac-window">
+        <div class="mac-header">
+          <div class="mac-dot r"></div>
+          <div class="mac-dot y"></div>
+          <div class="mac-dot g"></div>
+        </div>
+        <img src="/leadlisting.png" alt="Lead Listing Dashboard" style="width: 100%; display: block; object-fit: cover;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMPAIGN MANAGEMENT SECTION -->
+  <section class="feature" style="flex-direction: column; align-items: center; padding: 70px 40px; background: #fdfdfd;">
+    <div class="feature-text" style="text-align: center; margin-bottom: 50px; max-width: 800px;">
+      <h2 style="font-size: 28px; margin-bottom: 16px;">Drive Revenue with Smart Campaign Management</h2>
+      <p style="color: #555; font-size: 14.5px; line-height: 1.6;">Create highly personalized WhatsApp campaigns, preview your interactive messages in real-time, and launch broadcasts that convert your leads into bookings.</p>
+    </div>
+    <div class="feature-img" style="width: 100%;">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;">
+        
+        <!-- Left Image: Dashboard -->
+        <div class="mac-window" style="flex: 1.2; min-width: 280px; max-width: 480px; margin: 0;">
+          <div class="mac-header">
+            <div class="mac-dot r"></div><div class="mac-dot y"></div><div class="mac-dot g"></div>
+          </div>
+          <img src="/campain-creation.png" alt="Campaign Creation Dashboard" style="width: 100%; display: block;" />
+        </div>
+        
+        <!-- Arrow 1 -->
+        <div class="flow-arrow" style="margin: 0 -10px; z-index: 2;">
+          <div class="flow-arrow-line"></div>
+          <div class="flow-arrow-label" style="background: #fff; border: 1px solid #e8f5ee;">Preview</div>
+        </div>
+
+        <!-- Middle Column: Campaign Previews -->
+        <div style="display: flex; flex-direction: column; gap: 24px; flex: 1; min-width: 220px; max-width: 280px; z-index: 3;">
+          
+          <!-- First Preview (Frameless) -->
+          <div style="background: #fff; border-radius: 18px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05); overflow: hidden;">
+            <img src="/cta campaingnpreview.jpeg" alt="Campaign Preview" style="width: 100%; display: block;" />
+          </div>
+
+          <!-- Second Preview (Carousel) -->
+          <div style="background: #fff; border-radius: 18px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05); overflow: hidden;">
+            <img src="/carosalpreview.png" alt="Carousel Preview" style="width: 100%; display: block;" />
+          </div>
+
+        </div>
+
+        <!-- Arrow 2 -->
+        <div class="flow-arrow" style="margin: 0 -10px; z-index: 2;">
+          <div class="flow-arrow-line"></div>
+          <div class="flow-arrow-label" style="background: #fff; border: 1px solid #e8f5ee;">Launch</div>
+        </div>
+
+        <!-- Right Column: Launch Campaigns -->
+        <div style="display: flex; flex-direction: column; gap: 24px; flex-shrink: 0; z-index: 1;">
+          
+          <!-- First Launch (CTA) -->
+          <div class="phone-device" style="transform: scale(0.85); margin: -40px -20px;">
+            <div class="phone-device-body">
+              <div class="phone-speaker"></div>
+              <div class="phone-device-screen">
+                <img src="/ctacampaig.jpeg" alt="CTA Campaign Launch" class="whatsapp-mockup-img" />
+                <div class="phone-device-reflection"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Second Launch (Carousel) -->
+          <div class="phone-device" style="transform: scale(0.85); margin: -40px -20px;">
+            <div class="phone-device-body">
+              <div class="phone-speaker"></div>
+              <div class="phone-device-screen">
+                <img src="/whatsapp4.jpeg" alt="Carousel Campaign Launch" class="whatsapp-mockup-img" />
+                <div class="phone-device-reflection"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 4: PROPERTY & PACKAGE MANAGEMENT -->
+  <section class="feature alt" style="background: #f4fbf7;">
+    <div class="feature-text">
+      <h2>Effortless Property &amp; Package Management</h2>
+      <ul>
+        <li>Manage all your travel packages and properties from a single, intuitive dashboard</li>
+        <li>Update pricing, availability, and itineraries in real-time</li>
+        <li>Sync your custom packages directly to WhatsApp catalogs for easy customer browsing</li>
+        <li>Keep your agents and customers on the same page with centralized package details</li>
+      </ul>
+      <a href="#" class="btn-try">Try for Free</a>
+    </div>
+    <div class="feature-img" style="flex: 1.8; display: flex; flex-direction: column; padding: 20px 0;">
+      
+      <!-- Packages Dashboard (Top Right) -->
+      <div class="mac-window" style="align-self: flex-end; width: 95%; max-width: 700px; z-index: 1;">
+        <div class="mac-header">
+          <div class="mac-dot r"></div><div class="mac-dot y"></div><div class="mac-dot g"></div>
+        </div>
+        <img src="/packages.png" alt="Package Management" style="width: 100%; display: block;" />
+      </div>
+
+      <!-- Properties Dashboard (Bottom Left) -->
+      <div class="mac-window" style="align-self: flex-start; width: 95%; max-width: 700px; margin-top: -120px; z-index: 2; box-shadow: -10px 20px 60px rgba(0,0,0,0.2);">
+        <div class="mac-header">
+          <div class="mac-dot r"></div><div class="mac-dot y"></div><div class="mac-dot g"></div>
+        </div>
+        <img src="/properties.png" alt="Property Management" style="width: 100%; display: block;" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FEATURE 5: ITINERARY CREATION -->
+  <section class="feature">
+    <div class="feature-text">
+      <h2>Craft Stunning Itineraries Instantly</h2>
+      <ul>
+        <li>Generate personalized, day-by-day itineraries with just a few clicks</li>
+        <li>Present activities, hotel details, and travel logic in a beautiful format</li>
+        <li>Share itineraries seamlessly directly on WhatsApp</li>
+        <li>Delight your customers with clear, professional, and exciting travel plans</li>
+      </ul>
+      <a href="#" class="btn-try">Try for Free</a>
+    </div>
+    <div class="feature-img" style="flex: 1.5;">
+      <div class="mac-window" style="width: 100%; max-width: 800px; box-shadow: 0 25px 70px rgba(0,0,0,0.15);">
+        <div class="mac-header">
+          <div class="mac-dot r"></div><div class="mac-dot y"></div><div class="mac-dot g"></div>
+        </div>
+        <img src="/itnery.jpeg" alt="Itinerary Creation Dashboard" style="width: 100%; display: block;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 6: CUSTOMER MANAGEMENT -->
+  <section class="feature alt" style="background: #fdfdfd;">
+    <div class="feature-text">
+      <h2>Comprehensive Customer Management</h2>
+      <ul>
+        <li>Keep track of all your leads and existing customers in one unified list</li>
+        <li>Access deep insights with detailed customer profiles and travel histories</li>
+        <li>Manage interactions, preferences, and custom tags effortlessly</li>
+        <li>Build stronger relationships with a 360-degree view of your travelers</li>
+      </ul>
+      <a href="#" class="btn-try">Try for Free</a>
+    </div>
+    <div class="feature-img" style="flex: 1.8; display: flex; flex-direction: column; padding: 20px 0;">
+      <!-- Customer List (Top Right) -->
+      <div class="mac-window" style="align-self: flex-end; width: 95%; max-width: 700px; z-index: 1;">
+        <div class="mac-header">
+          <div class="mac-dot r"></div><div class="mac-dot y"></div><div class="mac-dot g"></div>
+        </div>
+        <img src="/customerlist.png" alt="Customer List Dashboard" style="width: 100%; display: block;" />
+      </div>
+
+      <!-- Customer Details (Bottom Left) -->
+      <div class="mac-window" style="align-self: flex-start; width: 95%; max-width: 700px; margin-top: -120px; z-index: 2; box-shadow: -10px 20px 60px rgba(0,0,0,0.2);">
+        <div class="mac-header">
+          <div class="mac-dot r"></div><div class="mac-dot y"></div><div class="mac-dot g"></div>
+        </div>
+        <img src="/customer details.png" alt="Customer Details View" style="width: 100%; display: block;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 7: BOOKING MANAGEMENT -->
+  <section class="feature" style="background: #f4fbf7;">
+    <div class="feature-text">
+      <h2>Streamlined Booking Management</h2>
+      <ul>
+        <li>Centralize all your travel reservations, quotes, and confirmed bookings</li>
+        <li>Track payment statuses, travel dates, and fulfillment stages easily</li>
+        <li>Automate confirmation messages and payment reminders via WhatsApp</li>
+        <li>Ensure a seamless, drop-off-free experience from inquiry to trip completion</li>
+      </ul>
+      <a href="#" class="btn-try">Try for Free</a>
+    </div>
+    <div class="feature-img" style="flex: 1.5;">
+      <div class="mac-window" style="width: 100%; max-width: 800px; box-shadow: 0 25px 70px rgba(0,0,0,0.15);">
+        <div class="mac-header">
+          <div class="mac-dot r"></div><div class="mac-dot y"></div><div class="mac-dot g"></div>
+        </div>
+        <img src="/booking.png" alt="Booking Management Dashboard" style="width: 100%; display: block;" />
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- GET STARTED -->
+  <div class="get-started">
+    <h2>Get Started with Interakt Today</h2>
+    <div class="get-started-tags">
+      <span class="gs-tag">Engage &amp; Re-engage Prospects</span>
+      <span class="gs-tag">Drive Sales</span>
+      <span class="gs-tag">Deliver higher CSAT</span>
+      <span class="gs-tag">Support at Scale</span>
+    </div>
+    <a href="#" class="btn-white">Try Interakt for Free</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">inter<span>akt</span></div>
+        <p class="footer-desc">WhatsApp Business API platform helping businesses engage and sell better.</p>
+        <div class="footer-social">
+          <span class="social-icon">f</span>
+          <span class="social-icon">in</span>
+          <span class="social-icon">🐦</span>
+          <span class="social-icon">▶</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Interakt</h4>
+        <a href="#">Get a Live Demo</a>
+        <a href="#">About Us</a>
+        <a href="#">Partner with Us</a>
+        <a href="#">Interakt Academy</a>
+        <a href="#">FAQ's</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">Case Studies</a>
+        <a href="#">Resource Center</a>
+        <a href="#">Notifications Library</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+      <div class="footer-col">
+        <h4>Why Interakt</h4>
+        <a href="#">Interakt vs. Aisensy</a>
+        <a href="#">Interakt vs. Bitespeed</a>
+        <a href="#">Interakt vs. Delightchat</a>
+        <a href="#">Interakt vs. Business</a>
+        <a href="#">Interakt vs. Wati</a>
+        <a href="#">Interakt vs. Gupshup</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-regions">India | Singapore | Indonesia | Brazil | UAE | Philippines | Africa</div>
+      <p>Copyright © Jio Haptik Technologies Limited 2025. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- PDF DOWNLOAD BUTTON -->
+  <button id="downloadPdfBtn" class="btn-green" style="position: fixed; bottom: 24px; right: 24px; z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.25); border-radius: 50px; padding: 14px 28px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+    <span style="font-weight: 600;">Download as PDF</span>
+  </button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('downloadPdfBtn');
+      if(btn) {
+        btn.addEventListener('click', () => {
+          btn.style.display = 'none'; // Hide button
+          
+          const html = document.documentElement;
+          const body = document.body;
+          
+          // Dynamically get the exact width and height of the user's screen
+          const fullWidth = Math.max(html.scrollWidth, body.scrollWidth, html.clientWidth);
+          const fullHeight = Math.max(html.scrollHeight, body.scrollHeight, html.clientHeight);
+
+          const opt = {
+            margin:       0,
+            filename:     'Wayon-Travel-Platform.pdf',
+            image:        { type: 'jpeg', quality: 1.0 }, // Maximum image quality
+            html2canvas:  { 
+              scale: 2, // 2x Retina resolution for crystal clear images
+              useCORS: true, 
+              scrollY: 0, 
+              scrollX: 0,
+              windowWidth: fullWidth,
+              width: fullWidth,
+              height: fullHeight
+            },
+            jsPDF:        { 
+              unit: 'px', 
+              format: [fullWidth, fullHeight], 
+              orientation: 'portrait',
+              compress: true
+            }
+          };
+
+          window.scrollTo(0,0);
+
+          html2pdf().set(opt).from(html).save().then(() => {
+            btn.style.display = 'flex'; // Restore button
+          }).catch(err => {
+            console.error("PDF generation failed:", err);
+            btn.style.display = 'flex';
+          });
+        });
+      }
+    });
+  </script>
 </Layout>
